@@ -1,10 +1,16 @@
+"use client";
+import { Logo } from "../../atoms/Logo";
+import { StyledHeader } from "./style";
+
 export default function HeaderOrganism() {
   return (
-    <header className="bg-gray-800">
-      <nav className="container mx-auto px-6 py-3">
+    <StyledHeader className="bg-gray-800">
+      <nav className="container mx-auto px-6 py-2">
         <div className="flex items-center justify-between">
           <div className="text-white font-bold text-xl">
-            <a href="#">Logo</a>
+            <a href="#">
+              <Logo />
+            </a>
           </div>
           <div className="hidden md:block">
             <ul className="flex items-center space-x-8">
@@ -36,9 +42,9 @@ export default function HeaderOrganism() {
                 className="w-6 h-6 text-white"
                 x-show="!showMenu"
                 fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
@@ -73,6 +79,6 @@ export default function HeaderOrganism() {
           </ul>
         </div>
       </nav>
-    </header>
+    </StyledHeader>
   );
 }
