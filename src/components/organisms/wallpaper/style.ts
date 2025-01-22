@@ -2,7 +2,15 @@ import styled from "styled-components";
 
 export const StyledWallpaper = styled.div`
   background-image: url("/wallpaper.jpg");
-  height: calc(100vh - 76px);
+  height: calc(100vh);
   background-size: cover;
   background-position: center;
+  filter: blur(2px);
+  &:after {
+    height: calc(100vh);
+    width: 100%;
+    position: absolute;
+    content: " ";
+    background-color: #000000c4;
+  }
 `;
