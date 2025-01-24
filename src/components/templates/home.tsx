@@ -1,4 +1,5 @@
 import HeaderOrganism from "../organisms/header/header";
+import { Section } from "../organisms/section";
 import Wallpaper from "../organisms/wallpaper";
 
 export default function HomeTemplate() {
@@ -6,6 +7,7 @@ export default function HomeTemplate() {
     <>
       <HeaderOrganism />
       <Wallpaper />
+      <Section />
     </>
   );
 }

@@ -1,10 +1,9 @@
-"use client";
+import styles from "./styles.module.scss";
 import { Logo } from "../../atoms/Logo";
-import { StyledHeader } from "./style";
 
 export default function HeaderOrganism() {
   return (
-    <StyledHeader className="bg-gray-800">
+    <header className={`${styles.header} bg-gray-800`}>
       <nav className="container mx-auto px-6 py-2">
         <div className="flex items-center justify-between">
           <div className="text-white font-bold text-xl">
@@ -79,6 +78,6 @@ export default function HeaderOrganism() {
           </ul>
         </div>
       </nav>
-    </StyledHeader>
+    </header>
   );
 }

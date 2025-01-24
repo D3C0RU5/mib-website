@@ -1,6 +1,5 @@
-"use client";
-import { StyledWallpaper } from "./style";
+import styles from "./styles.module.scss";
 
 export default function Wallpaper() {
-  return <StyledWallpaper />;
+  return <div className={styles.wallpaper}></div>;
 }
