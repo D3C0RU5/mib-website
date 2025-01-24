@@ -1,9 +1,10 @@
 import styles from "./styles.module.scss";
 import { Logo } from "../../atoms/Logo";
+import { MenuItem } from "@/components/molecules/menuItem";
 
 export default function HeaderOrganism() {
   return (
-    <header className={`${styles.header} bg-gray-800`}>
+    <header className={styles.header}>
       <nav className="container mx-auto px-6 py-2">
         <div className="flex items-center justify-between">
           <div className="text-white font-bold text-xl">
@@ -14,24 +15,16 @@ export default function HeaderOrganism() {
           <div className="hidden md:block">
             <ul className="flex items-center space-x-8">
               <li>
-                <a href="#" className="text-white">
-                  Home
-                </a>
+                <MenuItem text="Home" />
               </li>
               <li>
-                <a href="#" className="text-white">
-                  About
-                </a>
+                <MenuItem text="About" />
               </li>
               <li>
-                <a href="#" className="text-white">
-                  Services
-                </a>
+                <MenuItem text="Services" />
               </li>
               <li>
-                <a href="#" className="text-white">
-                  Contact
-                </a>
+                <MenuItem text="Contact" />
               </li>
             </ul>
           </div>
