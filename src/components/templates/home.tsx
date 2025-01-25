@@ -7,7 +7,7 @@ export default function HomeTemplate() {
     <>
       <HeaderOrganism />
       <Wallpaper />
-      <Section minHeight="200vh" backgroundColor="#333" />
+      <Section minHeight="200vh" backgroundColor="#fff" />
     </>
   );
 }

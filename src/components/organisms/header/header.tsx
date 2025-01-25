@@ -1,32 +1,26 @@
 import styles from "./styles.module.scss";
 import { Logo } from "../../atoms/Logo";
-import { MenuItem } from "@/components/molecules/menuItem";
+import { MenuItem } from "@/components/atoms/menuItem";
 
 export default function HeaderOrganism() {
   return (
     <header className={styles.header}>
       <nav className="container mx-auto px-6 py-2">
-        <div className="flex items-center justify-between">
+        <div
+          className={`${styles["container"]} flex items-center justify-between`}
+        >
           <div className="text-white font-bold text-xl">
             <a href="#">
               <Logo />
             </a>
           </div>
           <div className="hidden md:block">
-            <ul className="flex items-center space-x-8">
-              <li>
-                <MenuItem text="Home" />
-              </li>
-              <li>
-                <MenuItem text="About" />
-              </li>
-              <li>
-                <MenuItem text="Services" />
-              </li>
-              <li>
-                <MenuItem text="Contact" />
-              </li>
-            </ul>
+            <div className="flex items-center space-x-8">
+              <MenuItem text="Home" />
+              <MenuItem text="About" />
+              <MenuItem text="Services" />
+              <MenuItem text="Contact" />
+            </div>
           </div>
           <div className="md:hidden">
             <button className="outline-none mobile-menu-button">
