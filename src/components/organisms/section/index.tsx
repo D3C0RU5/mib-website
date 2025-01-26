@@ -8,8 +8,10 @@ export const Section: React.FC<SectionProps> = ({
   ...props
 }) => {
   return (
-    <section {...props} className="w-xl h-screen bg-background">
-      teste
+    <section {...props} className="h-screen">
+      <div className="mx-auto max-w-7xl p-6 lg:px-8">
+        <div>Conteudo aqui</div>
+      </div>
     </section>
   );
 };

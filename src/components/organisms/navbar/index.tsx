@@ -19,7 +19,8 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed z-20 w-full bg-gray-950 border-b px-4 py-4 flex justify-between items-center border-bottom-300">
+      <div className="h-[78px]"></div>
+      <nav className="fixed top-0 z-20 w-full bg-gray-950 border-b px-4 py-4 flex justify-between items-center border-bottom-300">
         <a className="text-3xl font-bold leading-none" href="#">
           <Logo />
         </a>
