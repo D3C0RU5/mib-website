@@ -17,7 +17,7 @@ export default function Wallpaper() {
       <div className="z-10">
         <div className="w-full mx-auto text-center items-center p-5">
           <Logo size={200} />
-          <h2 className="text-2xl font-bold tracking-tight text-gray-200 sm:text-4xl">
+          <h2 className="text-2xl font-bold tracking-tight text-gray-300 sm:text-4xl">
             Junte-se à Insanidade da MIB!
           </h2>
           <div className="text-sm mt-4 text-gray-400">
