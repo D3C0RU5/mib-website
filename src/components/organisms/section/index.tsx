@@ -1,16 +1,14 @@
 import styles from "./style.module.scss";
 
-type SectionProps = {
-  minHeight: React.CSSProperties["minHeight"];
-  backgroundColor: React.CSSProperties["backgroundColor"];
+interface SectionProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+
 };
 
 export const Section: React.FC<SectionProps> = ({
-  minHeight = 0,
-  backgroundColor = "white",
+  ...props
 }) => {
   return (
-    <section className={styles.section} style={{ minHeight, backgroundColor }}>
+    <section {...props} className="w-xl h-screen bg-background">
       teste
     </section>
   );
