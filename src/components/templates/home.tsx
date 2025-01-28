@@ -7,7 +7,8 @@ export default function HomeTemplate() {
   return (
     <>
       <Navbar />
-      <Section>teste</Section>
+      <Section title="Teste de título">
+      </Section>
     </>
   );
 }

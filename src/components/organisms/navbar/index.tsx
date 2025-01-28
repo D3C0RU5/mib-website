@@ -19,7 +19,6 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="h-[78px]"></div>
       <nav className="fixed top-0 z-20 w-full bg-gray-950 border-b px-4 py-4 flex justify-between items-center border-bottom-300">
         <a className="text-3xl font-bold leading-none" href="#">
           <Logo />
@@ -80,9 +79,9 @@ export default function Navbar() {
                 stroke="currentColor"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M6 18L18 6M6 6l12 12"
                 ></path>
               </svg>
