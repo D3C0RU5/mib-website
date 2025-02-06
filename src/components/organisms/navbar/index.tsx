@@ -1,6 +1,7 @@
 "use client";
 import { Logo } from "@/components/atoms/Logo";
 import { VerticalSeparator } from "@/components/atoms/VerticalSeparator";
+import { Avatar } from "@/components/molecules/avatar";
 import React from "react";
 import { FaDiscord } from "react-icons/fa";
 
@@ -30,6 +31,8 @@ export default function Navbar() {
           >
             <FaDiscord size={20} />
           </a>
+          <Avatar />
+
           <div className="lg:hidden">
             <button
               onClick={handleOpen}
