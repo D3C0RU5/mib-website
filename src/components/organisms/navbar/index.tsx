@@ -14,7 +14,7 @@ export default function Navbar() {
   const menus = [
     { title: "Home", path: "/your-path" },
     { title: "Sobre a MIB", path: "/your-path" },
-    { title: "Aliste-se", path: "/your-path" },
+    { title: "Aliste-se", path: "/enlistment" },
     { title: "Vip", path: "/your-path" },
   ];
 
@@ -52,17 +52,18 @@ export default function Navbar() {
 
         <ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:items-center lg:w-auto lg:space-x-6">
           {menus.map((menu, index) => (
-            <>
-              <li>
+            <React.Fragment key={index}>
+              <li key={index}>
                 <a
                   className="text-sm text-gray-400 hover:text-white px-2 py-3"
-                  href="#"
+                  href={menu.path}
                 >
                   {menu.title}
                 </a>
               </li>
+
               {menus.length !== index + 1 && <VerticalSeparator />}
-            </>
+            </React.Fragment>
           ))}
         </ul>
       </nav>
@@ -96,7 +97,7 @@ export default function Navbar() {
                 <li className="mb-1" key={menu.title}>
                   <a
                     className="block p-4 text-sm font-semibold text-gray-400 hover:bg-gray-900 hover:text-white rounded"
-                    href="#"
+                    href={menu.path}
                   >
                     {menu.title}
                   </a>

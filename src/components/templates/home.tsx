@@ -1,4 +1,5 @@
 "use client";
+
 import { signIn, signOut, useSession } from "next-auth/react";
 import Navbar from "../organisms/navbar";
 import { Section } from "../organisms/section";

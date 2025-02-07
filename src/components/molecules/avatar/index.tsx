@@ -6,7 +6,7 @@ import {
 import { useSession } from "next-auth/react";
 
 export function Avatar() {
-  const { status, data } = useSession();
+  const { data } = useSession();
 
   return (
     <AvatarUI>
