@@ -2,7 +2,7 @@ import styles from "./style.module.scss";
 
 interface SectionProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   title: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export const Section: React.FC<SectionProps> = ({
