@@ -19,7 +19,7 @@ export default function HeaderOrganism() {
               <MenuItem text="Home" />
               <MenuItem text="About" />
               <MenuItem text="Services" />
-              <MenuItem text="Contact" />
+              <MenuItem text="Contact"  />
             </div>
           </div>
           <div className="md:hidden">

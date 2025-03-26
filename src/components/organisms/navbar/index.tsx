@@ -12,10 +12,10 @@ export default function Navbar() {
   const handleClose = () => setOpen(false);
 
   const menus = [
-    { title: "Home", path: "/your-path" },
-    { title: "Sobre a MIB", path: "/your-path" },
+    { title: "Home", path: "/home" },
+    { title: "Sobre a MIB", path: "/about" },
     { title: "Aliste-se", path: "/enlistment" },
-    { title: "Vip", path: "/your-path" },
+    { title: "Vip", path: "/vip" },
   ];
 
   return (

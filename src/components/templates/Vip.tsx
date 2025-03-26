@@ -1,11 +1,14 @@
 import Navbar from "../organisms/navbar";
 import { Section } from "../organisms/section";
+import VipForm from "../organisms/vipForm";
 
-export default function VipTempalte() {
+export default function VipTemplate() {
   return (
     <>
       <Navbar />
-      <Section title="Adicionar VIP"></Section>
+      <Section title="Adquirir VIP">
+        <VipForm />
+      </Section>
     </>
   );
 }

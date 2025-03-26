@@ -1,5 +1,5 @@
-import VipTempalte from "../templates/Vip";
+import VipTemplate from "../templates/Vip";
 
 export default function VipPage() {
-  return <VipTempalte />;
+  return <VipTemplate />;
 }
