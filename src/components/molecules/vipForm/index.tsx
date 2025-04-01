@@ -1,5 +1,6 @@
 "use client";
 
+import { CommandInputPlayer } from "@/components/atoms/commanInputPlayer";
 import {
   Form,
   FormControl,
@@ -16,11 +17,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { RconPlayer, RconService } from "@/services/rcon";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { RconPlayer } from "@/core/types/RconPlayer";
+import { RconService } from "@/core/services/rcon";
 
 const formSchema = z.object({
   buyingForMe: z.boolean(),
@@ -32,6 +34,7 @@ const formSchema = z.object({
 
 export default function VipForm() {
   const [players, setPlayers] = useState<RconPlayer[]>([]);
+  const [playerName, setPlayerName] = useState<string>("");
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -41,33 +44,37 @@ export default function VipForm() {
     },
   });
 
+  useEffect(() => {
+    if (playerName) {
+      RconService.playersByName(playerName)
+        .then((data) => {
+          console.log(data);
+          setPlayers(data);
+        })
+        .catch((error) => {
+          console.log(error);
+          console.error("Erro ao buscar jogadores:", error);
+          setPlayers([]);
+        });
+    }
+  }, [playerName]);
+
   function handleSubmit(values: z.infer<typeof formSchema>) {}
 
-  async function handleChangePlayerName() {
-    const _players = await RconService.playersByName("");
-    console.log(_players);
-    setPlayers(_players);
+  function handleChangePlayerName({
+    target,
+  }: React.ChangeEvent<HTMLInputElement>) {
+    setPlayerName(target.value);
   }
 
   return (
     <Form {...form}>
+      <CommandInputPlayer />
+      <hr className="my-5" />
       <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="playerID"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Nick do jogador</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="Nick do jogador"
-                  {...field}
-                  onChange={handleChangePlayerName}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+        <Input
+          placeholder="Nick do jogador"
+          onChange={handleChangePlayerName}
         />
         <FormField
           control={form.control}
@@ -97,9 +104,6 @@ export default function VipForm() {
           )}
         />
       </form>
-      {players.map((_p) => (
-        <span key={_p.playerAccountId}>{_p.playerName}</span>
-      ))}
     </Form>
   );
 }
