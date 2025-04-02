@@ -1,3 +1,4 @@
+import VipForm from "@/components/molecules/vipForm";
 import { VipList } from "@/components/molecules/vipList";
 
 export default function VipManager() {
@@ -6,7 +7,7 @@ export default function VipManager() {
       <div>
         <VipList />
       </div>
-      <div className="col-span-3">teste</div>
+      <div className="col-span-3">{/* <VipForm /> */}</div>
     </div>
   );
 }
