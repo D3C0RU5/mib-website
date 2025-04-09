@@ -82,7 +82,7 @@ export function CommandInputPlayer() {
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className="w-full justify-between"
+            className="w-full justify-between font-light text-gray-500 hover:text-gray-400"
           >
             {selectedPlayer?.playerName || "Adicione um novo player"}
             {isLoading ? (
@@ -107,7 +107,7 @@ export function CommandInputPlayer() {
                     key={_player.playerAccountId}
                     value={_player.playerName}
                     onSelect={(currentValue) => {
-                      if (currentValue === playerName) {
+                      if (currentValue === selectedPlayer?.playerName) {
                         setSelectedPlayer(null);
                       } else {
                         setSelectedPlayer(_player);
@@ -119,7 +119,7 @@ export function CommandInputPlayer() {
                     <Check
                       className={cn(
                         "ml-auto",
-                        playerName === _player.playerName
+                        selectedPlayer?.playerName === _player.playerName
                           ? "opacity-100"
                           : "opacity-0"
                       )}
