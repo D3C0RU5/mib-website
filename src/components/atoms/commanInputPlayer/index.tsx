@@ -67,9 +67,9 @@ export function CommandInputPlayer() {
     setOpen((p) => !p);
   };
 
-  const handleAddPlayer = () => {
+  const handleAddPlayer = async () => {
     if (selectedPlayer) {
-      dispatch(addVipPlayerAction(selectedPlayer));
+      await dispatch(addVipPlayerAction(selectedPlayer));
       setSelectedPlayer(null);
     }
   };
