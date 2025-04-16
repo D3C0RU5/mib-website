@@ -11,4 +11,13 @@ export class AccountService {
       body: JSON.stringify({ player }),
     });
   }
+
+  static async getAssociatedPlayers() {
+    return BaseService.request<RconPlayer[]>("/api/service/account/players", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
 }

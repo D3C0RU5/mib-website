@@ -27,7 +27,7 @@ export const authOptions: NextAuthOptions = {
             email: user?.email,
             name: user?.name,
           },
-          process.env.JWT_SECRET as string, // usa um segredo seu
+          process.env.JWT_SECRET as string,
           { expiresIn: "1h" }
         );
 

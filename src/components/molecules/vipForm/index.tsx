@@ -23,6 +23,10 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { RconPlayer } from "@/core/types/RconPlayer";
 import { RconService } from "@/core/services/rcon";
+import { useSelector } from "react-redux";
+import { selectVipPlayers } from "@/redux/vip/vipSelectors";
+import { useAppDispatch } from "@/redux/store";
+import { fetchVipPlayersAction } from "@/redux/vip/vipActions";
 
 const formSchema = z.object({
   buyingForMe: z.boolean(),
@@ -48,11 +52,9 @@ export default function VipForm() {
     if (playerName) {
       RconService.playersByName(playerName)
         .then((data) => {
-          console.log(data);
           setPlayers(data);
         })
         .catch((error) => {
-          console.log(error);
           console.error("Erro ao buscar jogadores:", error);
           setPlayers([]);
         });

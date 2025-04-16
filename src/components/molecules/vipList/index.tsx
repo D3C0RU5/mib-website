@@ -1,32 +1,21 @@
 "use client";
 
 import { VipPlayerLine } from "@/components/atoms/VipPlayerLine";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { RootState } from "@/redux/store";
+import { RootState, useAppDispatch } from "@/redux/store";
 import { selectVipPlayers } from "@/redux/vip/vipSelectors";
-import { Label } from "@radix-ui/react-label";
-import {
-  CheckCheckIcon,
-  Ellipsis,
-  PlusCircle,
-  PlusCircleIcon,
-} from "lucide-react";
+import { Ellipsis } from "lucide-react";
 import { useSelector } from "react-redux";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { CommandInputPlayer } from "@/components/atoms/commanInputPlayer";
 import { useEffect } from "react";
+import { fetchVipPlayersAction } from "@/redux/vip/vipActions";
 
 export const VipList = () => {
   const vipPlayers = useSelector((state: RootState) => selectVipPlayers(state));
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchVipPlayersAction());
+  }, []);
 
   return (
     <>

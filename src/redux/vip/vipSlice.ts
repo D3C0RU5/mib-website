@@ -1,28 +1,13 @@
 import { RconPlayer } from "@/core/types/RconPlayer";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { fetchVipPlayersAction } from "./vipActions";
 
 type VipState = {
   vipPlayers: RconPlayer[];
 };
 
 const initialState: VipState = {
-  vipPlayers: [
-    {
-      playerAccountId: "12345account",
-      playerId: "someidplayer",
-      playerName: "Taynara",
-    },
-    {
-      playerAccountId: "96785account",
-      playerId: "anotheridplayer",
-      playerName: "Reaper",
-    },
-    {
-      playerAccountId: "12345account",
-      playerId: "animalidplayer",
-      playerName: "Teeteto",
-    },
-  ],
+  vipPlayers: [],
 };
 
 const vipSlice = createSlice({
@@ -37,9 +22,18 @@ const vipSlice = createSlice({
         (player) => player.playerId !== action.payload
       );
     },
+    addVipPlayers(state, action: PayloadAction<RconPlayer[]>) {
+      state.vipPlayers = action.payload;
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchVipPlayersAction.fulfilled, (state, action) => {
+      state.vipPlayers = action.payload;
+    });
   },
 });
 
-export const { addVipPlayer, removeVipPlayer } = vipSlice.actions;
+export const { addVipPlayer, removeVipPlayer, addVipPlayers } =
+  vipSlice.actions;
 
 export const vipReducer = vipSlice.reducer;
