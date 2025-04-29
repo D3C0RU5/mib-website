@@ -4,10 +4,12 @@ import { fetchVipPlayersAction } from "./vipActions";
 
 type VipState = {
   vipPlayers: RconPlayer[];
+  selectedPlayer?: RconPlayer;
 };
 
 const initialState: VipState = {
   vipPlayers: [],
+  selectedPlayer: undefined,
 };
 
 const vipSlice = createSlice({
@@ -25,6 +27,9 @@ const vipSlice = createSlice({
     addVipPlayers(state, action: PayloadAction<RconPlayer[]>) {
       state.vipPlayers = action.payload;
     },
+    selectVipPlayer(state, action: PayloadAction<RconPlayer>) {
+      state.selectedPlayer = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchVipPlayersAction.fulfilled, (state, action) => {
@@ -33,7 +38,7 @@ const vipSlice = createSlice({
   },
 });
 
-export const { addVipPlayer, removeVipPlayer, addVipPlayers } =
+export const { addVipPlayer, removeVipPlayer, addVipPlayers, selectVipPlayer } =
   vipSlice.actions;
 
 export const vipReducer = vipSlice.reducer;

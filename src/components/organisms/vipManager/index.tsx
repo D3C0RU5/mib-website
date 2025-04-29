@@ -7,7 +7,9 @@ export default function VipManager() {
       <div>
         <VipList />
       </div>
-      <div className="col-span-3">{/* <VipForm /> */}</div>
+      <div className="col-span-3">
+        <VipForm />
+      </div>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { RconPlayer } from "@/core/types/RconPlayer";
 import { AppDispatch } from "../store";
-import { addVipPlayer, addVipPlayers, removeVipPlayer } from "./vipSlice";
+import { addVipPlayer, removeVipPlayer } from "./vipSlice";
 import { AccountService } from "@/@core/services/account";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
@@ -26,7 +26,6 @@ export const fetchVipPlayersAction = createAsyncThunk<RconPlayer[]>(
   async (_, thunkAPI) => {
     try {
       const players = await AccountService.getAssociatedPlayers();
-      console.log(players);
       return players;
     } catch (err) {
       console.error("Erro ao recuperar players:", err);

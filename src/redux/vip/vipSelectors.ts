@@ -1,8 +1,12 @@
 import { RconPlayer } from "@/core/types/RconPlayer";
 import { RootState } from "../store";
 
-export const selectVipPlayers = (state: RootState): RconPlayer[] => {
+export const allVipPlayers = (state: RootState): RconPlayer[] => {
   return state.vip.vipPlayers;
+};
+
+export const selectedVip = (state: RootState): RconPlayer | undefined => {
+  return state.vip.selectedPlayer;
 };
 
 export const selectVipPlayerById = (

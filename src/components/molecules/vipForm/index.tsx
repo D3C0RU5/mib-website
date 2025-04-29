@@ -1,111 +1,75 @@
 "use client";
 
-import { CommandInputPlayer } from "@/components/atoms/commanInputPlayer";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { RconPlayer } from "@/core/types/RconPlayer";
-import { RconService } from "@/core/services/rcon";
 import { useSelector } from "react-redux";
-import { selectVipPlayers } from "@/redux/vip/vipSelectors";
-import { useAppDispatch } from "@/redux/store";
-import { fetchVipPlayersAction } from "@/redux/vip/vipActions";
+import { RootState } from "@/redux/store";
+import { useState } from "react";
 
-const formSchema = z.object({
-  buyingForMe: z.boolean(),
-  playerName: z.string(),
-  playerID: z
-    .string()
-    .min(5, "É preciso escolher um player para definir o VIP"), // TODO: should validate id formats(steam, epic, etc..)
-});
+function formatMoney(value: number) {
+  return value.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+}
+
+type VipOrderOption = {
+  label: string;
+  qtdMonths: number;
+  price: number;
+  oldPrice: number;
+};
+const vipOrderOptions: VipOrderOption[] = [
+  { label: "Mensal", qtdMonths: 1, oldPrice: 15.0, price: 10 },
+  { label: "Trimestral", qtdMonths: 3, oldPrice: 45.0, price: 30 },
+  { label: "Semestral", qtdMonths: 6, oldPrice: 90.0, price: 55 },
+  { label: "Anual", qtdMonths: 12, oldPrice: 180.0, price: 100 },
+];
 
 export default function VipForm() {
-  const [players, setPlayers] = useState<RconPlayer[]>([]);
-  const [playerName, setPlayerName] = useState<string>("");
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      buyingForMe: true,
-      playerName: "",
-      playerID: "",
-    },
-  });
+  const selectedPlayer = useSelector(
+    (state: RootState) => state.vip.selectedPlayer
+  );
+  const [selectedOrder, setSelectedOrder] = useState<VipOrderOption>();
 
-  useEffect(() => {
-    if (playerName) {
-      RconService.playersByName(playerName)
-        .then((data) => {
-          setPlayers(data);
-        })
-        .catch((error) => {
-          console.error("Erro ao buscar jogadores:", error);
-          setPlayers([]);
-        });
-    }
-  }, [playerName]);
-
-  function handleSubmit(values: z.infer<typeof formSchema>) {}
-
-  function handleChangePlayerName({
-    target,
-  }: React.ChangeEvent<HTMLInputElement>) {
-    setPlayerName(target.value);
+  function CardOption(option: VipOrderOption) {
+    const isSelected = () => {
+      return selectedOrder?.qtdMonths === option.qtdMonths;
+    };
+    return (
+      <div
+        className={`flex cursor-pointer flex-col items-center justify-center p-6 border-2 rounded-lg shadow-md hover:shadow-lg transition ${
+          isSelected()
+            ? "bg-gray-900 hover:border-gray-700"
+            : "bg-gray-950 hover:bg-gray-900"
+        }`}
+        onClick={() => {
+          setSelectedOrder(option);
+        }}
+      >
+        <h2 className="text-xl font-semibold">{option.label}</h2>
+        <br />
+        <div className="text-center">
+          <span className="text-sm line-through text-red-600">
+            {formatMoney(option.oldPrice)}
+          </span>
+          <br />
+          <span className="text-xl text-green-600 font-bold mt-2">
+            {formatMoney(option.price)}
+          </span>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <Form {...form}>
-      <CommandInputPlayer />
-      <hr className="my-5" />
-      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8">
-        <Input
-          placeholder="Nick do jogador"
-          onChange={handleChangePlayerName}
-        />
-        <FormField
-          control={form.control}
-          name="playerID"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Selecione o Nickname</FormLabel>
-              <FormControl>
-                <Select onValueChange={field.onChange}>
-                  <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Nicknames" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {players.map((_player) => (
-                      <SelectItem
-                        key={_player.playerId}
-                        value={_player.playerAccountId}
-                      >
-                        {_player.playerName}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-      </form>
-    </Form>
+    <>
+      <h3 className="text-xl">
+        Configurando Vips para o player: {selectedPlayer?.playerName}
+      </h3>
+      <div className="p-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {vipOrderOptions.map((_option) => CardOption(_option))}
+        </div>
+      </div>
+    </>
   );
 }
