@@ -3,6 +3,8 @@
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { ShoppingCart } from "lucide-react";
 
 function formatMoney(value: number) {
   return value.toLocaleString("pt-BR", {
@@ -61,15 +63,38 @@ export default function VipForm() {
   }
 
   return (
-    <>
-      <h3 className="text-xl">
-        Configurando Vips para o player: {selectedPlayer?.playerName}
-      </h3>
-      <div className="p-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {vipOrderOptions.map((_option) => CardOption(_option))}
+    <div className="rounded-md bg-gray-900/50 p-3">
+      {selectedPlayer ? (
+        <div>
+          <h3 className="text-xl text-gray-400 ">
+            Configurando Vips para o player: {selectedPlayer?.playerName}
+          </h3>
+          <hr className="my-2" />
+          <div className="mt-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {vipOrderOptions.map((_option) => CardOption(_option))}
+            </div>
+          </div>
+          <br />
+          <div className="text-center">
+            <Button
+              className=""
+              variant="success"
+              size="lg"
+              disabled={!selectedOrder}
+            >
+              <ShoppingCart />
+              Confirmar
+            </Button>
+          </div>
         </div>
-      </div>
-    </>
+      ) : (
+        <>
+          <h3 className="py-20 flex justify-center items-center text-gray-400">
+            Selecione um jogador
+          </h3>
+        </>
+      )}
+    </div>
   );
 }

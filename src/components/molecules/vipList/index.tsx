@@ -19,7 +19,7 @@ export const VipList = () => {
 
   return (
     <>
-      <div className="grid gap-1 border border-primary-500 p-2 rounded-md bg-gray-900">
+      <div className="grid gap-1 border border-primary-500 p-2 rounded-md bg-gray-900/50">
         {players.map((_player) => (
           <VipPlayerLine key={_player.playerId} player={_player} />
         ))}
