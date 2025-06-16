@@ -5,6 +5,9 @@ import { RootState } from "@/redux/store";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
+import { toast } from "sonner";
+import { Toaster } from "@/components/ui/sonner";
+import { VipService } from "@/@core/services/vip";
 
 function formatMoney(value: number) {
   return value.toLocaleString("pt-BR", {
@@ -38,6 +41,7 @@ export default function VipForm() {
     };
     return (
       <div
+        key={option.label}
         className={`flex cursor-pointer flex-col items-center justify-center p-6 border-2 rounded-lg shadow-md hover:shadow-lg transition ${
           isSelected()
             ? "bg-gray-900 hover:border-gray-700"
@@ -62,6 +66,16 @@ export default function VipForm() {
     );
   }
 
+  const handleClick = async () => {
+    await VipService.addVip({
+      description: "♦ Reaper ♦",
+      expiration: "2099-06-02T23:05:14.914Z",
+      forward: false,
+      player_id: "76561198874254126",
+    });
+    toast.success("Plano adquirido!");
+  };
+
   return (
     <div className="rounded-md bg-gray-900/50 p-3">
       {selectedPlayer ? (
@@ -81,6 +95,7 @@ export default function VipForm() {
               className=""
               variant="success"
               size="lg"
+              onClick={handleClick}
               disabled={!selectedOrder}
             >
               <ShoppingCart />
