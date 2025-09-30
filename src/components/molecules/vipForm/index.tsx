@@ -67,6 +67,9 @@ export default function VipForm() {
   }
 
   const handleClick = async () => {
+    const paymentCheckout = await VipService.payment();
+    console.log(paymentCheckout.sandbox_init_point);
+    window.open(paymentCheckout.sandbox_init_point);
     await VipService.addVip({
       description: "♦ Reaper ♦",
       expiration: "2099-06-02T23:05:14.914Z",

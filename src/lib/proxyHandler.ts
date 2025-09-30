@@ -24,6 +24,7 @@ export function createProxyHandler(config: ProxyHandlerConfig) {
     }
 
     const session = await getServerSession({ req, ...authOptions });
+    console.log(session);
     const body = req.method !== "GET" ? await req.json() : undefined;
     const proxiedBody = methodConfig.mapRequestBody
       ? methodConfig.mapRequestBody(body)

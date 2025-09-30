@@ -17,6 +17,7 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
+
   callbacks: {
     async jwt({ token, account, user }) {
       if (account) {
@@ -28,7 +29,7 @@ export const authOptions: NextAuthOptions = {
             name: user?.name,
           },
           process.env.JWT_SECRET as string,
-          { expiresIn: "1h" }
+          { expiresIn: "24h" }
         );
 
         token.customAccessToken = customAccessToken;

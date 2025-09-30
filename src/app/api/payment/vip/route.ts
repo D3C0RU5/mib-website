@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 async function handler(req: NextRequest, res: NextResponse) {
   if (req.method === "GET") {
-    const qName = req?.nextUrl?.searchParams.get("name");
-    return await fetch(`http://localhost:8000/api/rcon/players?name=${qName}`, {
+    return await fetch(`http://localhost:8000/api/payment/vip`, {
+      cache: "no-cache",
       method: "GET",
       headers: {
         "Content-Type": "application/json",

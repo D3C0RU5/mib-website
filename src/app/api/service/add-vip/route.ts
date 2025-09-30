@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const handler = createProxyHandler({
   POST: {
-    url: "http://localhost:8000/api/add-vip",
+    url: "http://localhost:8000/api/vip/add-vip",
     method: "POST",
     mapRequestBody: (body) => ({
       description: body.description,
